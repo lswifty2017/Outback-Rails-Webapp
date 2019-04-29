@@ -1,0 +1,10 @@
+<h1>This is landing page.</h1>
+
+<h2>Listings</h2>
+<ul>
+    <% @listings.each do |listing| %>
+    <li>
+      <%= listing.title %>
+    </li>
+    <% end %>
+</ul>
