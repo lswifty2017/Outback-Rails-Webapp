@@ -21,6 +21,12 @@ class ListingsController < ApplicationController
     @listing = Listing.find(params[:id])
   end
 
+  def show_user_listings
+    if @user = current_user
+      @user_listings = @user.listings.all
+    end
+  end
+
   def edit
     @listing = Listing.find(params[:id])
   end
