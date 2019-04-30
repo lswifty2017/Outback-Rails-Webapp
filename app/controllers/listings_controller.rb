@@ -5,6 +5,8 @@ class ListingsController < ApplicationController
   
   def create
     @listing = Listing.new(listing_params)
+    @listing.save
+    redirect_to @listing
 
     # @user = User.find(params[:user_id])
     # if @listing = @user.listings.create(listing_params)
