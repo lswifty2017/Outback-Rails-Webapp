@@ -6,6 +6,7 @@
     <li>
       <%= listing.title %>
       <%= link_to 'show', listing_path(listing.id) %>
+      <%= link_to 'delete', destroy_listing_path(listing.id), data: { confirm: 'Are you sure?' }%>
     </li>
     <% end %>
 </ul>

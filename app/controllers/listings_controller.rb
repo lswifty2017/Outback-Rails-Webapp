@@ -28,7 +28,7 @@ class ListingsController < ApplicationController
   def update
     @listing = Listing.find(params[:id])
     if @listing.update(listing_params)
-      flash[:notice] = "Restaurant successfully updated"
+      flash[:notice] = "Listing successfully updated"
       redirect_to @listing
     else
       render 'index'
@@ -38,6 +38,7 @@ class ListingsController < ApplicationController
   def destroy
     @listing = Listing.find(params[:id])
     @listing.destroy
+    flash[:notice] = "Listing successfully deleted"
     redirect_to listings_path
   end
 

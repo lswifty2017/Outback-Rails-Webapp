@@ -6,5 +6,7 @@ Rails.application.routes.draw do
   post "/listings", to: "listings#create", as: "create_listing"
   get '/listings/:id/edit', to: 'listings#edit', as: 'edit_listing'
   patch '/listings/:id/edit', to: 'listings#update', as: 'update_listing'
+  get  "listings/:id/delete", to: "listings#destroy"
+  delete "listings/:id/delete", to: "listings#destroy", as: "destroy_listing"
   root 'listings#index'
 end
