@@ -9,7 +9,7 @@ class BookingsController < ApplicationController
       listing_id: @listing
     })
     @booking.save
-    redirect_to listings_path
+    redirect_to root_path
   end
 
   def edit
