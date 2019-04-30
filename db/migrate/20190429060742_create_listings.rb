@@ -5,7 +5,7 @@ class CreateListings < ActiveRecord::Migration[5.2]
       t.string :location
       t.integer :cost
       t.string :description
-
+      t.belongs_to :user, index:true 
       t.timestamps
     end
   end
