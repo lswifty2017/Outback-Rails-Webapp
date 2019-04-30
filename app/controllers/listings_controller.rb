@@ -10,7 +10,6 @@ class ListingsController < ApplicationController
     # if @listing = @user.listings.create(listing_params)
     #   @listing.save
     #   @user = current_user
-    #   RestaurantMailer.with(user: @user).new_review_email.deliver_now
     # end
     
     # redirect_to listings_path
@@ -21,9 +20,23 @@ class ListingsController < ApplicationController
   end
 
   def edit
+    @listing = Listing.find(params[:id])
+  end
+
+  def update
+    @listing = Listing.find(params[:id])
+    if @listing.update(listing_params)
+      flash[:notice] = "Restaurant successfully updated"
+      redirect_to @listing
+    else
+      render 'index'
+    end
   end
 
   def destroy
+    @listing = Listing.find(params[:id])
+    @listing.destroy
+    redirect_to listings_path
   end
 
   private
