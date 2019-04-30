@@ -9,5 +9,6 @@ Rails.application.routes.draw do
   get  "listings/:id/delete", to: "listings#destroy"
   delete "listings/:id/delete", to: "listings#destroy", as: "destroy_listing"
   get '/user/listings', to: "listings#show_user_listings", as: 'show_user_listings'
+  resources :bookings
   root 'listings#index'
 end
