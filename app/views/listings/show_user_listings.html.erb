@@ -1,14 +1,21 @@
 <h1>Your Listings</h1>
-
-<ul> <% if @user_listings != nil %>
+<ul>
+ <% if @user_listings != nil %>
       <% @user_listings.each do |listing| %>
       <li>
         <%= listing.title %>
         <%= link_to 'show', listing_path(listing.id) %>
         <%= link_to 'delete', destroy_listing_path(listing.id), data: { confirm: 'Are you sure?' }%>
+        <p> Booking Status: 
+        <% if listing.booked_status != true %>
+          <%= "Available" %>
+        <% else %>
+         <%= "Not Available" %>
+        <% end %>
+        </p>
       </li>
       <% end %>
     <% else %>
       <p> No user listings right now!</p>
-    <% end %>
+  <% end %>
 </ul>

@@ -6,10 +6,14 @@ class BookingsController < ApplicationController
     @listing = params[:listing]
     @booking = Booking.new({
       user_id: current_user.id,
-      listing_id: @listing
+      listing_id: @listing,
     })
-    @booking.save
-    redirect_to listings_path
+    @booking.listing.update_attribute(:booked_status, true)
+    if @booking.save
+      redirect_to listings_path
+    else
+      redirect_to :root
+    end
   end
 
   def edit
