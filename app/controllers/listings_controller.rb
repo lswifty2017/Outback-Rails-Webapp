@@ -5,16 +5,12 @@ class ListingsController < ApplicationController
   
   def create
     @listing = Listing.new(listing_params)
-    @listing.save
-    redirect_to @listing
-
-    # @user = User.find(params[:user_id])
-    # if @listing = @user.listings.create(listing_params)
-    #   @listing.save
-    #   @user = current_user
-    # end
-    
-    # redirect_to listings_path
+    @listing.user_id = current_user.id
+    if @listing.save
+      redirect_to @listing
+    else
+      redirect_to :root
+    end
   end
 
   def show
@@ -22,9 +18,8 @@ class ListingsController < ApplicationController
   end
 
   def show_user_listings
-    if @user = current_user
-      @user_listings = @user.listings.all
-    end
+    @user = current_user
+    @user_listings = @user.listings.all
   end
 
   def edit
