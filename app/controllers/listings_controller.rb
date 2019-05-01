@@ -6,6 +6,7 @@ class ListingsController < ApplicationController
   def create
     @listing = Listing.new(listing_params)
     @listing.user_id = current_user.id
+    @listing.uploaded_images = params["uploaded_images"]
     if @listing.save
       redirect_to @listing
     else
@@ -45,6 +46,6 @@ class ListingsController < ApplicationController
 
   private
   def listing_params
-    params.permit(:title, :location, :description, :cost, :uploaded_images)
+    params.permit(:title, :location, :description, :cost, uploaded_images: [])
   end
 end

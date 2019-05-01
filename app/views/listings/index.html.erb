@@ -19,6 +19,7 @@
     </li>
     <% end %>
 </ul>
-
-<h2>Create Listing</h2>
-<%= render "shared/form_create" %>
+<% if @user = current_user %>
+  <h2>Create Listing</h2>
+  <%= render "shared/form_create" %>
+<% end %>
