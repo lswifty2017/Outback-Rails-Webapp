@@ -62,8 +62,8 @@ Rails.application.configure do
   #mailer stmp settings
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-  address:              'smtp.mailgun.org',
-  port:                 587,
+  address:              ENV['MAILGUN_ADDRESS'],
+  port:                 ENV['MAILGUN_PORT'],
   domain:               ENV['MAILGUN_DOMAIN'],
   user_name:            ENV['MAILGUN_USER_NAME'],
   password:             ENV['MAILGUN_PASSWORD'],
