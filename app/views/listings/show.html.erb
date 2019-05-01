@@ -4,6 +4,12 @@
 
 <h3> <%= @listing.title %> </h3>
 
+<% if @listing.uploaded_images.attached? %>
+  <%= image_tag @listing.uploaded_images %>
+<% else %>
+  <p>No image for this listing.</p>
+<% end %>
+
 
 <% if can? :edit, @listing %>
   <%= link_to 'Modify Listing', update_listing_path%>

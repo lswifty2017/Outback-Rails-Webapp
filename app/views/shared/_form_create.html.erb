@@ -1,4 +1,5 @@
-<form action="<%= create_listing_path %>" method="POST" >
+<form action="<%= create_listing_path %>" method="POST" enctype="multipart/form-data" >
+
 <input type="hidden" value="<%= form_authenticity_token %>" name="authenticity_token" />
   <label for="title">Title</label>
   <input type="text" name="title" id="title"/>
@@ -11,6 +12,9 @@
 
   <label for="cost">Cost</label>
   <input type="integer" name="cost" id="cost" />
+
+  <label for = "uploaded_image"> Upload Images </label>
+  <input type = "file" name = "uploaded_image" id = "uploaded_image" multiple/>
 
   <input type="submit" value="Create" />
 </form>
