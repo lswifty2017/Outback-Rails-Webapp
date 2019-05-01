@@ -6,7 +6,9 @@
     <li>
       <%= listing.title %>
       <%= link_to 'show', listing_path(listing.id) %>
-      <%= link_to 'delete', destroy_listing_path(listing.id), data: { confirm: 'Are you sure?' }%>
+      <% if can? :delete, listing%>
+        <%= link_to 'delete', destroy_listing_path(listing.id), data: { confirm: 'Are you sure?' }%>
+      <% end %>
       <p> Booking Status: 
         <% if listing.booked_status != true %>
           <%= "Available" %>
