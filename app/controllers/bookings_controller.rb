@@ -18,6 +18,11 @@ class BookingsController < ApplicationController
     end
   end
 
+  def show_user_bookings
+    @booking = Booking.all
+    @user = current_user
+  end
+
   def edit
   end
 
