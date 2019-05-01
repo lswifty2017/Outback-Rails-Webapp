@@ -10,6 +10,8 @@ class BookingsController < ApplicationController
     })
     @booking.listing.update_attribute(:booked_status, true)
     if @booking.save
+      @user = current_user
+      BookingMailer.with(user: @user).new_booking_email.deliver_now
       redirect_to listings_path
     else
       redirect_to :root
