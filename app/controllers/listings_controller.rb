@@ -6,7 +6,6 @@ class ListingsController < ApplicationController
   def create
     @listing = Listing.new(listing_params)
     @listing.user_id = current_user.id
-    @listing.uploaded_images = params["uploaded_images"]
     if @listing.save
       redirect_to @listing
     else
