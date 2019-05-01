@@ -4,7 +4,7 @@
       <% @user_listings.each do |listing| %>
       <li>
         <%= listing.title %>
-        <%= link_to 'show', listing_path(listing.id) %>
+        <%= link_to 'Modify', update_listing_path(listing.id)%>
         <%= link_to 'delete', destroy_listing_path(listing.id), data: { confirm: 'Are you sure?' }%>
         <p> Booking Status: 
         <% if listing.booked_status != true %>

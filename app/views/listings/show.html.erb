@@ -4,10 +4,17 @@
 
 <h3> <%= @listing.title %> </h3>
 
-<%= link_to 'edit', edit_listing_path %>
 
-<form action="<%= create_booking_path %>" method="POST">
-  <input type="hidden" value="<%= form_authenticity_token %>" name="authenticity_token" />
-  <input type="hidden" name="listing" value="<%=@listing.id%>"/>
-  <input type="submit" value="Book" />
-</form>
+<% if can? :edit, @listing %>
+  <%= link_to 'Modify Listing', update_listing_path%>
+<% end %>
+
+<% if @user = current_user %>
+  <form action="<%= create_booking_path %>" method="POST">
+    <input type="hidden" value="<%= form_authenticity_token %>" name="authenticity_token" />
+    <input type="hidden" name="listing" value="<%=@listing.id%>"/>
+    <input type="submit" value="Book" />
+  </form>
+<% else %>
+  <p> Login to Book - <%= link_to 'Login', new_user_session_path %></p>
+<% end %>
