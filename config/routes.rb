@@ -11,4 +11,5 @@ Rails.application.routes.draw do
   delete "listings/:id/delete", to: "listings#destroy", as: "destroy_listing"
   get '/user/listings', to: "listings#show_user_listings", as: 'show_user_listings'
   post '/create_booking', to: "bookings#create", as: 'create_booking'
+  default_url_options :host => 'localhost:3000'
 end
