@@ -9,12 +9,17 @@
   <%= link_to 'Modify Listing', update_listing_path%>
 <% end %>
 
-<% if @user = current_user %>
-  <form action="<%= create_booking_path %>" method="POST">
-    <input type="hidden" value="<%= form_authenticity_token %>" name="authenticity_token" />
-    <input type="hidden" name="listing" value="<%=@listing.id%>"/>
-    <input type="submit" value="Book" />
-  </form>
+<% if @listing.booked_status != true %>
+  <% if @user = current_user  %>
+    <form action="<%= create_booking_path %>" method="POST">
+      <input type="hidden" value="<%= form_authenticity_token %>" name="authenticity_token" />
+      <input type="hidden" name="listing" value="<%=@listing.id%>"/>
+      <input type="submit" value="Book" />
+    </form>
+  <% else %>
+    <p> Login to Book - <%= link_to 'Login', new_user_session_path %></p>
+  <% end %>
 <% else %>
-  <p> Login to Book - <%= link_to 'Login', new_user_session_path %></p>
+  <p>This campsite is currently unavailable.</p>
 <% end %>
+
