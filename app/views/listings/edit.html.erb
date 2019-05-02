@@ -3,7 +3,7 @@
 <% if @listing.uploaded_images.attached? == true %>
   
   <% @listing.uploaded_images.each do |image| %>
-   <%=image_tag image, class: 'image-size'%>
+   <%=image_tag image.service_url, class: 'image-size'%>
   <% end %>
   <%= link_to 'Remove Images', destroy_image_path, data: { confirm: 'Are you sure?' } %>
 

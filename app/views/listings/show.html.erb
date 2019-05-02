@@ -4,10 +4,12 @@
 
 <h3> <%= @listing.title %> </h3>
 
+<h3> Price: <%= render "/shared/stripe_form" %></h3>
+
 <% if @listing.uploaded_images.attached? == true %>
   
   <% @listing.uploaded_images.each do |image| %>
-   <%=image_tag image, class: 'image-size'%>
+   <%=image_tag image.service_url, class: 'image-size'%>
   <% end %>
 
 <% else %>

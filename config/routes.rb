@@ -18,9 +18,13 @@ Rails.application.routes.draw do
 
 
 
+
   
   get  "bookings/:id/delete", to: "bookings#destroy"
   delete "bookings/:id/delete", to: "bookings#destroy", as: "destroy_booking"
+
+
+  resources :charges
 
   default_url_options :host => 'localhost:3000'
 end
