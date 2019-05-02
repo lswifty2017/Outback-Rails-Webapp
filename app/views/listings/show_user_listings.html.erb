@@ -1,6 +1,6 @@
 <h1>Your Listings</h1>
 <ul>
-<% if @user_listings.count != 0 %>
+<% if @user_listings != nil %>
   <% @user_listings.each do |listing| %>
   <li>
     <%= listing.title %>
