@@ -15,5 +15,6 @@ Rails.application.routes.draw do
   get '/user/bookings', to: "bookings#show_user_bookings", as: 'show_user_bookings'
   get '/listings/:id/edit/destroy_image', to: 'listings#destroy_uploaded_images'
   patch '/listings/:id/edit/destroy_image', to: 'listings#destroy_uploaded_images', as: 'destroy_image'
+  resources :charges
   default_url_options :host => 'localhost:3000'
 end
