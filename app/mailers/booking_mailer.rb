@@ -9,6 +9,6 @@ class BookingMailer < ApplicationMailer
     @user = params[:user]
     @host = params[:host]
     @booking = params[:booking]
-    mail(to: @host.email, subject: "Camper #{@user} has cancelled their stay at #{@booking"
+    mail(to: @host.email, subject: "Camper #{@user} has cancelled their stay at #{@booking}")
   end
 end 
