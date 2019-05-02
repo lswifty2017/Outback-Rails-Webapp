@@ -1,4 +1,4 @@
-<form action="<%= update_listing_path %>" method="POST" >
+<form action="<%= update_listing_path %>" method="POST" enctype="multipart/form-data"  >
 <input type="hidden" name="_method" value="patch" />
 <input type="hidden" value="<%= form_authenticity_token %>" name="authenticity_token" />
   <label for="title">Title</label>
@@ -12,6 +12,9 @@
 
   <label for="cost">Cost</label>
   <input type="integer" name="cost" id="cost" />
+
+  <label for = "uploaded_images"> Upload Images </label>
+  <input type = "file" name = "uploaded_images[]" id = "uploaded_images" multiple/>
 
   <input type="submit" value="Edit" />
 </form>

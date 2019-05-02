@@ -43,6 +43,15 @@ class ListingsController < ApplicationController
     redirect_to listings_path
   end
 
+  def destroy_uploaded_images
+    @listing = Listing.find(params[:id])
+    @uploaded_images = @listing.uploaded_images
+    @uploaded_images.purge
+    flash[:notice] = "Images successfully deleted"
+    @listing.save
+    redirect_to @listing
+  end
+
   private
   def listing_params
     params.permit(:title, :location, :description, :cost, uploaded_images: [])
