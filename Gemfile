@@ -65,3 +65,4 @@ gem 'cancancan'
 gem 'faker'
 gem 'figaro'
 gem 'stripe'
+gem "aws-sdk-s3", require: false
