@@ -3,7 +3,9 @@
 <% if @user.bookings.count != 0 %>
   <% @booking.each do |booking| %>
     <% if booking.user_id == current_user.id  %>
-      <p><%= booking.listing.title %> </p> 
+      <p><%= booking.listing.title  %> </p> 
+      <%= link_to 'delete', destroy_booking_path(booking.id), data: { confirm: 'Are you sure?' }%>
+      
     <% end %>
   <% end %>
 <% elsif %>
