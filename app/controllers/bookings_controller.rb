@@ -7,6 +7,8 @@ class BookingsController < ApplicationController
     @booking = Booking.new({
       user_id: current_user.id,
       listing_id: @listing,
+      start_date: params[:start_date],
+      end_date: params[:end_date]
     })
     @booking.listing.update_attribute(:booked_status, true)
     if @booking.save
@@ -43,6 +45,6 @@ class BookingsController < ApplicationController
   private
 
   def booking_params
-    params.permit(:listing)
+    params.permit(:listing, :start_date, :end_date)
   end
 end
