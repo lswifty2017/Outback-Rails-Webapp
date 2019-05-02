@@ -13,5 +13,7 @@ Rails.application.routes.draw do
   post '/create_booking', to: "bookings#create", as: 'create_booking'
   get "/bookings/:id", to: "bookings#show", as: "booking"
   get '/user/bookings', to: "bookings#show_user_bookings", as: 'show_user_bookings'
+  get '/listings/:id/edit/destroy_image', to: 'listings#destroy_uploaded_images'
+  patch '/listings/:id/edit/destroy_image', to: 'listings#destroy_uploaded_images', as: 'destroy_image'
   default_url_options :host => 'localhost:3000'
 end
