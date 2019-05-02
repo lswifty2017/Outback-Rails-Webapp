@@ -15,6 +15,10 @@ Rails.application.routes.draw do
   get '/user/bookings', to: "bookings#show_user_bookings", as: 'show_user_bookings'
   get '/listings/:id/edit/destroy_image', to: 'listings#destroy_uploaded_images'
   patch '/listings/:id/edit/destroy_image', to: 'listings#destroy_uploaded_images', as: 'destroy_image'
+
+
+
+  
   get  "bookings/:id/delete", to: "bookings#destroy"
   delete "bookings/:id/delete", to: "bookings#destroy", as: "destroy_booking"
 
