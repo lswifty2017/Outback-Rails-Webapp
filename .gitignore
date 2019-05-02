@@ -28,3 +28,7 @@
 
 # Ignore application configuration
 /config/application.yml
+
+#credentials form AWS
+
+/config/credentials.yml.enc
