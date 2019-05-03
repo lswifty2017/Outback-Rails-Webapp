@@ -3,21 +3,26 @@ class BookingsController < ApplicationController
   end
 
   def create
+    
     @listing = params[:listing]
     @booking = Booking.new({
       user_id: current_user.id,
       listing_id: @listing,
-      start_date: params[:start_date],
-      end_date: params[:end_date]
+      start_time: params[:start_time],
+      end_time: params[:end_time]
     })
     @booking.listing.update_attribute(:booked_status, true)
-    if @booking.save
+    if @booking.save!
       @user = current_user
       BookingMailer.with(user: @user).new_booking_email.deliver_now
-      redirect_to listings_path
+      redirect_to :booking_payment
     else
       redirect_to :root
     end
+  end
+  
+  def show
+    raise
   end
 
   def show_user_bookings
@@ -25,11 +30,19 @@ class BookingsController < ApplicationController
     @user = current_user
   end
 
+  def booking_payment
+    @booking = Booking.last
+    @day_cost = @booking.listing.cost
+    @total_days = @booking.amount_of_days
+    @total_cost = @day_cost * @total_days
+    render "booking_payment"
+  end
+
   def edit
   end
 
   def destroy
-    @booking  = Booking.find(params[:id])
+   @booking  = Booking.find(params[:id])
    @booking.listing.update_attribute(:booked_status, false)
    @user = current_user
    @host_user_id = @booking.listing.user_id
@@ -45,6 +58,6 @@ class BookingsController < ApplicationController
   private
 
   def booking_params
-    params.permit(:listing, :start_date, :end_date)
+    params.permit(:listing, :start_time, :end_time)
   end
 end

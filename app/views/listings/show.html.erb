@@ -6,6 +6,7 @@
 <h3> <%= @listing.location %> </h3>
 <h3> <%= @listing.description %> </h3>
 
+
 <% if @listing.bathroom_availability? == true %>
  <h3> Bathroom Facilities are available </h3>
 <% else %>
@@ -24,6 +25,9 @@
 <h3> Electricity is not available </h3>
 <% end %>
 
+<h3> Price: $ <%= @listing.cost %> per night</h3>
+
+
 <% if @listing.uploaded_images.attached? == true %>
   <% @listing.uploaded_images.each do |image| %>
    <%=image_tag image.service_url, class: 'image-size'%>
@@ -37,27 +41,29 @@
   <%= link_to 'Modify Listing', update_listing_path%>
 <% end %>
 
-<%= month_calendar(attribute: :start_date, end_attribute: :end_date) do |date| %>
+<%= month_calendar events: @bookings do |date, bookings| %>
   <%= date %>
+  <% bookings.each do |booking| %>
+    <div>
+      <%= "Booked" %>
+    </div>
+  <% end %>
 <% end %>
 
 
-
-<% if @listing.booked_status != true %>
-  <% if @user = current_user  %>
-    <h1> Book Now</h1>
-    <form action="<%= create_booking_path %>" method="POST">
-      <input type="hidden" value="<%= form_authenticity_token %>" name="authenticity_token" />
-      <input type="hidden" name="listing" value="<%=@listing.id%>"/>
-      <label>Start Date</label>
-      <input type="date" name='start_date' />
-      <label>End Date</label>
-      <input type="date" name='end_date'/>
-      <input type="submit" value="Book" />
-    </form>
-  <% else %>
-    <p> Login to Book - <%= link_to 'Login', new_user_session_path %></p>
-  <% end %>
+<% if current_user != nil%>
+  <h1> Book Now</h1>
+  <form action="<%= create_booking_path %>" method="POST">
+    <input type="hidden" value="<%= form_authenticity_token %>" name="authenticity_token" />
+    <input type="hidden" name="listing" value="<%=@listing.id%>"/>
+    <label>Start Date</label>
+    <input type="date" name='start_time' />
+    <label>End Date</label>
+    <input type="date" name='end_time'/>
+    <input type="submit" value="Book" />
+  </form>
 <% else %>
   <p>This campsite is currently unavailable.</p>
+<% end %>
+  <p> Login to Book - <%= link_to 'Login', new_user_session_path %></p>
 <% end %>

@@ -3,14 +3,17 @@ class Listing < ApplicationRecord
   has_many :bookings, dependent: :destroy
   has_many :users,  through: :bookings
 
-  def all_start_times
-    @all_start_times = []
-    @bookings = self.bookings
-    @all_start_times = @bookings.map do |booking|
-      booking.start_date
-    end
+  def start_date
+    @bookings
   end
 
+  def price_filter(price_limit)
+    @listing_array = []
+    self.each do |listing|
+      if listing.price < price_limit
+        @listing_array << listing
+      end
+    end
+  end
   
-
 end

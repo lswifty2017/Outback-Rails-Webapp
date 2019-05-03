@@ -1,4 +1,14 @@
-<h1>This is landing page.</h1>
+<h1>Welcome to Outback</h1>
+
+<h2>Search for Backyard Campsite</h2>
+
+<%= form_tag(listings_search_path) do %>
+  Price Per Day: <%= number_field_tag :cost %>
+  Checkin: <%= date_field_tag :start_time %>
+  Checkout: <%= date_field_tag :end_time %>
+  <%= submit_tag 'Search' %>
+<% end %>
+
 
 <h2>Listings</h2>
 <ul>
@@ -23,7 +33,3 @@
     </li>
     <% end %>
 </ul>
-<% if @user = current_user %>
-  <h2>Create Listing</h2>
-  <%= render "shared/form_create" %>
-<% end %>

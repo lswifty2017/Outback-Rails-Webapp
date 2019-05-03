@@ -2,6 +2,25 @@ class ListingsController < ApplicationController
   def index
     @listings = Listing.all
   end
+
+  def search
+    @listings = Listing.all
+    @cost = search_params[:cost].to_i
+    @start_time = search_params[:start_time]
+    @end_time = search_params[:end_time]
+    @filtered_listings_cost = @listings.map do |listing|
+      if listing.cost.to_i < @cost
+        listing
+      end
+    end 
+
+
+    # @price_filter_results = @listings.price_filter(@price)
+    # @price_filter_names = price_filter_results.map do |listing|
+    #   listing.title
+    # end
+    # redirect_to listings_search_results_path
+  end
   
   def create
     @listing = Listing.new(listing_params)
@@ -15,6 +34,7 @@ class ListingsController < ApplicationController
 
   def show
     @listing = Listing.find(params[:id])
+    @bookings = @listing.bookings
   end
 
   def show_user_listings
@@ -55,5 +75,9 @@ class ListingsController < ApplicationController
   private
   def listing_params
     params.permit(:title, :location, :description, :cost, :bathroom_availability, :laundry_availability, :electricity_availability, :kitchen_availability, uploaded_images: [])
+  end
+
+  def search_params
+    params.permit(:cost, :start_time, :end_time)
   end
 end
