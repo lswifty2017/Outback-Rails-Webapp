@@ -28,7 +28,7 @@ class ListingsController < ApplicationController
 
   def update
     @listing = Listing.find(params[:id])
-    if @listing.update(listing_params)
+    if @listing.update(listing_params) 
       flash[:notice] = "Listing successfully updated"
       redirect_to @listing
     else
@@ -54,6 +54,6 @@ class ListingsController < ApplicationController
 
   private
   def listing_params
-    params.permit(:title, :location, :description, :cost, uploaded_images: [])
+    params.permit(:title, :location, :description, :cost, :bathroom_availability, :laundry_availability, :electricity_availability, :kitchen_availability, uploaded_images: [])
   end
 end

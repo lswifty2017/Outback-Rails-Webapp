@@ -13,7 +13,8 @@ Listing.destroy_all
     title: Faker::Restaurant.unique.name,
     location: Faker::Address.unique.full_address,
     cost: rand(100),
-    description: Faker::Lorem.paragraph  
+    description: Faker::Lorem.paragraph,
+    bathroom_availability: true
   }
 puts "Creating Listing: #{params[:title]}"
 listing = Listing.new(params)
