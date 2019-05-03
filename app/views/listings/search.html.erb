@@ -1,0 +1,11 @@
+<h1>Search Results</h1>
+
+<% @filtered_listings_cost.each do |listing| %>
+  <% if listing != nil %>
+    <li><%= listing.title %></li>
+  <% end %>
+<% end %>
+
+
+<p><%= @start_time %></p>
+<p><%= @end_time %></p>

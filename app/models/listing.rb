@@ -7,5 +7,13 @@ class Listing < ApplicationRecord
     @bookings
   end
 
-
+  def price_filter(price_limit)
+    @listing_array = []
+    self.each do |listing|
+      if listing.price < price_limit
+        @listing_array << listing
+      end
+    end
+  end
+  
 end

@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'listings#index'
   get "/listings", to: "listings#index", as: "listings"
+  get'/results', to: "listings#search", as: "listings_search_results"
   get "/listings/:id", to: "listings#show", as: "listing"
   post "/listings", to: "listings#create", as: "create_listing"
   get '/listings/:id/edit', to: 'listings#edit', as: 'edit_listing'
@@ -17,7 +18,9 @@ Rails.application.routes.draw do
   patch '/listings/:id/edit/destroy_image', to: 'listings#destroy_uploaded_images', as: 'destroy_image'
   get '/bookings/payment', to: 'bookings#booking_payment', as: 'booking_payment'
   get "/bookings/:id", to: "bookings#show", as: "booking"
-
+  
+  post '/', to: "listings#search", as: "listings_search"
+  
 
   
   get  "bookings/:id/delete", to: "bookings#destroy"
