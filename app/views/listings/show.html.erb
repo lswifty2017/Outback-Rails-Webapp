@@ -4,7 +4,7 @@
 
 <h3> <%= @listing.title %> </h3>
 
-<h3> Price: <%= render "/shared/stripe_form" %></h3>
+<h3> Price: $ <%= @listing.cost %> per night</h3>
 
 <% if @listing.uploaded_images.attached? == true %>
   
@@ -31,7 +31,7 @@
 <% end %>
 
 
-<% if @user = current_user  %>
+<% if current_user != nil%>
   <h1> Book Now</h1>
   <form action="<%= create_booking_path %>" method="POST">
     <input type="hidden" value="<%= form_authenticity_token %>" name="authenticity_token" />
@@ -45,7 +45,4 @@
 <% else %>
   <p> Login to Book - <%= link_to 'Login', new_user_session_path %></p>
 <% end %>
-<% else %>
-<p>This campsite is currently unavailable.</p>
-
 
