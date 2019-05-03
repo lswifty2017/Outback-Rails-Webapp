@@ -21,28 +21,32 @@
   <%= link_to 'Modify Listing', update_listing_path%>
 <% end %>
 
-<%= month_calendar(attribute: :start_date, end_attribute: :end_date) do |date| %>
+<%= month_calendar events: @bookings do |date, bookings| %>
   <%= date %>
-<% end %>
-
-
-
-<% if @listing.booked_status != true %>
-  <% if @user = current_user  %>
-    <h1> Book Now</h1>
-    <form action="<%= create_booking_path %>" method="POST">
-      <input type="hidden" value="<%= form_authenticity_token %>" name="authenticity_token" />
-      <input type="hidden" name="listing" value="<%=@listing.id%>"/>
-      <label>Start Date</label>
-      <input type="date" name='start_date' />
-      <label>End Date</label>
-      <input type="date" name='end_date'/>
-      <input type="submit" value="Book" />
-    </form>
-  <% else %>
-    <p> Login to Book - <%= link_to 'Login', new_user_session_path %></p>
+  <% bookings.each do |booking| %>
+    <div>
+      <%= "Booked" %>
+    </div>
   <% end %>
-<% else %>
-  <p>This campsite is currently unavailable.</p>
 <% end %>
+
+
+
+<% if @user = current_user  %>
+  <h1> Book Now</h1>
+  <form action="<%= create_booking_path %>" method="POST">
+    <input type="hidden" value="<%= form_authenticity_token %>" name="authenticity_token" />
+    <input type="hidden" name="listing" value="<%=@listing.id%>"/>
+    <label>Start Date</label>
+    <input type="date" name='start_time' />
+    <label>End Date</label>
+    <input type="date" name='end_time'/>
+    <input type="submit" value="Book" />
+  </form>
+<% else %>
+  <p> Login to Book - <%= link_to 'Login', new_user_session_path %></p>
+<% end %>
+<% else %>
+<p>This campsite is currently unavailable.</p>
+
 
