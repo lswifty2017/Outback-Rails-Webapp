@@ -3,15 +3,35 @@
 <h2>Listing</h2>
 
 <h3> <%= @listing.title %> </h3>
+<h3> <%= @listing.location %> </h3>
+<h3> <%= @listing.description %> </h3>
+
+
+<% if @listing.bathroom_availability? == true %>
+ <h3> Bathroom Facilities are available </h3>
+<% else %>
+  <h3> Bathroom Facilities are not available </h3>
+<% end %>
+
+<% if @listing.laundry_availability? == true %>
+ <h3> Laundry Facilities are available </h3>
+<% else %>
+  <h3> Laundry Facilities are not available </h3>
+<% end %>
+
+<% if @listing.electricity_availability? == true %>
+ <h3> Electricity is available </h3>
+<% else %>
+<h3> Electricity is not available </h3>
+<% end %>
 
 <h3> Price: $ <%= @listing.cost %> per night</h3>
 
+
 <% if @listing.uploaded_images.attached? == true %>
-  
   <% @listing.uploaded_images.each do |image| %>
    <%=image_tag image.service_url, class: 'image-size'%>
   <% end %>
-
 <% else %>
   <p>No image for this listing.</p>
 <% end %>
@@ -43,6 +63,7 @@
     <input type="submit" value="Book" />
   </form>
 <% else %>
+  <p>This campsite is currently unavailable.</p>
+<% end %>
   <p> Login to Book - <%= link_to 'Login', new_user_session_path %></p>
 <% end %>
-
