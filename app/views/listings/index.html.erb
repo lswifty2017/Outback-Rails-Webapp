@@ -18,18 +18,13 @@
       <%= link_to 'show', listing_path(listing.id) %>
       <% if can? :delete, listing%>
         <%= link_to 'delete', destroy_listing_path(listing.id), data: { confirm: 'Are you sure?' }%>
-      <% end %> 
+      <% end %>
+
+     <% end %> 
       <p> Booking Location: 
       <% listing.location%>
       </p>
 
-      <p> Booking Status: 
-        <% if listing.booked_status != true %>
-          <%= "Available" %>
-        <% else %>
-          <%= "Not Available" %>
-        <% end %>
-      </p>
     </li>
     <% end %>
 </ul>

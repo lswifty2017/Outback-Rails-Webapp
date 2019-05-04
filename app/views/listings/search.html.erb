@@ -1,11 +1,27 @@
 <h1>Search Results</h1>
 
+<h2>Filtered by price</h2>
+
 <% @filtered_listings_cost.each do |listing| %>
   <% if listing != nil %>
     <li><%= listing.title %></li>
   <% end %>
 <% end %>
 
+<h2>Between <%=@start_time %> and <%= @end_time %></h2>
+
+
+<h2>Available within dates</h2>
+
+<% @bookings_available.each do |booking| %>
+  <li><%= booking.title %> <%= link_to 'show', listing_path([booking.id]) %></li>
+<% end %>
+
+<h2> Unavailable within dates</h2>
+
+<% @bookings_unavailable.each do |booking| %>
+  <li><%= booking.title %> <%= link_to 'show', listing_path([booking.id]) %></li>
+<% end %>
 
 <p><%= @start_time %></p>
 <p><%= @end_time %></p>
