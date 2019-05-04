@@ -1,3 +1,5 @@
+require 'date'
+
 class ListingsController < ApplicationController
   def index
     @listings = Listing.all
@@ -6,19 +8,45 @@ class ListingsController < ApplicationController
   def search
     @listings = Listing.all
     @cost = search_params[:cost].to_i
-    @start_time = search_params[:start_time]
-    @end_time = search_params[:end_time]
+    @start_time = search_params[:start_time].to_date
+    @end_time = search_params[:end_time].to_date
+
     @filtered_listings_cost = @listings.map do |listing|
       if listing.cost.to_i < @cost
         listing
       end
-    end 
+    end
 
+    #all get all boookings from listing
+    @bookings_unavailable = []
+    @bookings_available = []
+    @bookings_array = []
 
-    # @price_filter_results = @listings.price_filter(@price)
-    # @price_filter_names = price_filter_results.map do |listing|
-    #   listing.title
-    # end
+    @listings.each do |listing|
+      @bookings = listing.bookings
+      if @bookings.empty? == true
+        @bookings_available << listing
+      elsif @bookings.empty? == false
+        @bookings.each do |booking|
+          if booking.start_time && booking.end_time == nil
+            @bookings_available << booking.listing
+          else
+            @bookings_array = (booking.start_time.to_date..booking.end_time.to_date).to_a
+            @bookings_array.each do |booking_array|
+              if booking_array===@start_time || @end_time
+                unless @bookings_unavailable.include?booking.listing
+                  @bookings_unavailable << booking.listing 
+                end
+              else 
+                unless @bookings_available.include?booking.listing
+                  @bookings_available << booking.listing
+                end
+              end
+            end
+          end
+        end
+      end
+    end
     # redirect_to listings_search_results_path
   end
   
