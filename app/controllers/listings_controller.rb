@@ -54,6 +54,7 @@ class ListingsController < ApplicationController
     @listing = Listing.new(listing_params)
     @listing.user_id = current_user.id
     if @listing.save
+      raise
       redirect_to @listing
     else
       redirect_to :root
