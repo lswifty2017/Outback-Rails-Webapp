@@ -8,4 +8,6 @@ class Booking < ApplicationRecord
     @total_days = @end_time - @start_time
     @total_days = @total_days.to_i
   end
+
+  
 end

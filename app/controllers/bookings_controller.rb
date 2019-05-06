@@ -3,15 +3,18 @@ class BookingsController < ApplicationController
   end
 
   def create
-    
-    @listing = params[:listing]
+    @start_time = booking_params[:start_time]
+    @end_time = booking_params[:end_time]
+    @listing_id = booking_params[:listing_id]
+
     @booking = Booking.new({
       user_id: current_user.id,
-      listing_id: @listing,
-      start_time: params[:start_time],
-      end_time: params[:end_time]
+      listing_id: @listing_id,
+      start_time: @start_time,
+      end_time: @end_time
     })
-    @booking.listing.update_attribute(:booked_status, true)
+
+    @listing = Listing.find(@listing_id)
     if @booking.save!
       @user = current_user
       BookingMailer.with(user: @user).new_booking_email.deliver_now
@@ -19,10 +22,6 @@ class BookingsController < ApplicationController
     else
       redirect_to :root
     end
-  end
-  
-  def show
-    raise
   end
 
   def show_user_bookings
@@ -58,6 +57,6 @@ class BookingsController < ApplicationController
   private
 
   def booking_params
-    params.permit(:listing, :start_time, :end_time)
+    params.permit(:listing_id, :start_time, :end_time)
   end
 end
