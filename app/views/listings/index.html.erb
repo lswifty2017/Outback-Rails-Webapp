@@ -39,9 +39,9 @@ Hero Section
         <% @listings.each do |listing| %>
           <div class="col-md-3">
           <% if listing.uploaded_images.attached? %>
-            <a class="portfolio-item" style="background: url(<%= listing.uploaded_images.first.service_url %>);background-size: contain;" href="">
+            <a class="portfolio-item" style="background: url(<%= listing.uploaded_images.first.service_url %>);background-size: contain;" href="<%= listing_path(listing.id) %>">
           <% else %>
-            <a class="portfolio-item" style="background: url(https://images.unsplash.com/photo-1524684463181-5857e5b6f856?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80); background-size:cover;" href="">
+            <a class="portfolio-item" style="background: url(https://images.unsplash.com/photo-1524684463181-5857e5b6f856?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80); background-size:cover;" href="<%= listing_path(listing.id) %>">
           <% end %>
               <div class="details">
                 <h4><%= listing.title %></h4>
