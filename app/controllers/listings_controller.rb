@@ -54,7 +54,6 @@ class ListingsController < ApplicationController
     @listing = Listing.new(listing_params)
     @listing.user_id = current_user.id
     if @listing.save
-      raise
       redirect_to @listing
     else
       redirect_to :root
@@ -109,4 +108,5 @@ class ListingsController < ApplicationController
   def search_params
     params.permit(:cost, :start_time, :end_time)
   end
+
 end

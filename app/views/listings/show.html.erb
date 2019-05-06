@@ -55,7 +55,7 @@
   <h1> Book Now</h1>
   <form action="<%= create_booking_path %>" method="POST">
     <input type="hidden" value="<%= form_authenticity_token %>" name="authenticity_token" />
-    <input type="hidden" name="listing" value="<%=@listing.id%>"/>
+    <input type="hidden" name="listing_id" value= <%=@listing.id%> />
     <label>Start Date</label>
     <input type="date" name='start_time' />
     <label>End Date</label>
