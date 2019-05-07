@@ -1,14 +1,21 @@
 
 <div class = index-container>
-  <h1>Welcome to Outback</h1>
-  <h2>Find a campsite near you</h2>
-  <%= form_tag(listings_search_path) do %>
-    Checkin: <%= date_field_tag :start_time %>
-    Checkout: <%= date_field_tag :end_time %>
-    Price Per Day: <%= number_field_tag :cost %>
-    <%= submit_tag 'Search' %></a>  
-  <% end %>
-</div>
+  <div class = index-content>
+    <h1>Welcome to Outback</h1>
+    <h2>Backyard campsites for affordable prices</h2>
+  </div>
+  <div class = index-search-container>
+    <h3>Find your camping ground.</h3>
+    <%= form_tag(listings_search_path) do %>
+      <%= text_field_tag :location, nil, placeholder: "Location"%>
+      <%= date_field_tag :start_time%>
+      <%= date_field_tag :end_time %>
+      <%= number_field_tag :cost, nil, placeholder: "Max Price" %>
+      <%= submit_tag 'Search' %></a>  
+    <% end %>
+  </div>
+ 
+</div> 
 
 <h3>Campsites</h3>
 <p>Si stante, hoc natura videlicet vult, salvam esse se, quod concedimus ses haec dicturum fuisse</p>
