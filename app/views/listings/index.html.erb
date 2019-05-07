@@ -16,19 +16,25 @@
   </div>
  
 </div> 
-
-<h3>Campsites</h3>
-<p>Si stante, hoc natura videlicet vult, salvam esse se, quod concedimus ses haec dicturum fuisse</p>
-
-
-
-<% @listings.each do |listing| %>
-  <% if listing.uploaded_images.attached? %>
-    <a style="background: url(<%= listing.uploaded_images.first.service_url %>);background-size: contain;" href="<%= listing_path(listing.id) %>">
-  <% else %>
-    <a style="background: blue;" href="<%= listing_path(listing.id) %>">
-  <% end %>
-  <h4><%= listing.title %></h4>
-  <span>Price: $<%= listing.cost %> p/night</span>
-<%end%>
-
+<div class = listings-container>
+  <h3>Backyard Campsites</h3>
+  <div class = listings-placeholder-container>
+    <% @listings.each do |listing| %>
+      <div class = listings-placeholder>
+        <div class = listings-image-placeholder> 
+          <% if listing.uploaded_images.attached? %>
+            <%= link_to listing_path(listing.id) do %>
+              <%= image_tag listing.uploaded_images.first.service_url, :class => "listing-style-image" %>
+            <% end %>
+          <% else %>
+            <%= link_to listing_path(listing.id) do %>
+              <%= image_tag 'https://images.unsplash.com/photo-1503542149301-75886cd3030c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80', :class => "listing-style-image" %>
+            <% end %>
+          <% end %>
+        </div>
+        <h4><%= listing.title %></h4>
+        <h5>Price: $<%= listing.cost %> p/night</h5>
+      </div>
+    <%end%>
+  </div>
+</div>
