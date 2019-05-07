@@ -1,55 +1,27 @@
-<!--==========================
-Hero Section
-============================-->
-<section id="hero">
-  <div class="hero-container">
-    <div class="wow fadeIn">
-      <div class="hero-logo">
-        <%= image_tag 'logo_transparent.png' %>
-      </div>
 
-      <h1>Welcome to Outback</h1>
-      <h2>Find a campsite near you</h2>
-      <div class="actions">
-        <%= form_tag(listings_search_path) do %>
-         
-          <a class = "btn-get-started">Checkin: <%= date_field_tag :start_time %></a>  
-          <a class = "btn-get-started">Checkout: <%= date_field_tag :end_time %></a>   
-          <a class = "btn-get-started">Price Per Day: <%= number_field_tag :cost %></a>  
-          <a class = "btn-get-started"><%= submit_tag 'Search' %></a>  
-        <% end %>
-      </div>
-      
-    </div>
-  </div>
-</section>
+<div class = index-container>
+  <h1>Welcome to Outback</h1>
+  <h2>Find a campsite near you</h2>
+  <%= form_tag(listings_search_path) do %>
+    Checkin: <%= date_field_tag :start_time %>
+    Checkout: <%= date_field_tag :end_time %>
+    Price Per Day: <%= number_field_tag :cost %>
+    <%= submit_tag 'Search' %></a>  
+  <% end %>
+</div>
+
+<h3>Campsites</h3>
+<p>Si stante, hoc natura videlicet vult, salvam esse se, quod concedimus ses haec dicturum fuisse</p>
 
 
- <section id="portfolio">
-    <div class="container wow fadeInUp">
-      <div class="row">
-        <div class="col-md-12">
-          <h3 class="section-title">Campsites</h3>
-          <div class="section-title-divider"></div>
-          <p class="section-description">Si stante, hoc natura videlicet vult, salvam esse se, quod concedimus ses haec dicturum fuisse</p>
-        </div>
-      </div>
 
-      <div class="row">
-        <% @listings.each do |listing| %>
-          <div class="col-md-3">
-          <% if listing.uploaded_images.attached? %>
-            <a class="portfolio-item" style="background: url(<%= listing.uploaded_images.first.service_url %>);background-size: contain;" href="<%= listing_path(listing.id) %>">
-          <% else %>
-            <a class="portfolio-item" style="background: url(https://images.unsplash.com/photo-1524684463181-5857e5b6f856?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80); background-size:cover;" href="<%= listing_path(listing.id) %>">
-          <% end %>
-              <div class="details">
-                <h4><%= listing.title %></h4>
-                <span>Price: $<%= listing.cost %> p/night</span>
-              </div>
-            </a>
-          </div>
-          <%end%>
-      </div>
-    </div>
-  </section>
+<% @listings.each do |listing| %>
+  <% if listing.uploaded_images.attached? %>
+    <a style="background: url(<%= listing.uploaded_images.first.service_url %>);background-size: contain;" href="<%= listing_path(listing.id) %>">
+  <% else %>
+    <a style="background: blue;" href="<%= listing_path(listing.id) %>">
+  <% end %>
+  <h4><%= listing.title %></h4>
+  <span>Price: $<%= listing.cost %> p/night</span>
+<%end%>
+
