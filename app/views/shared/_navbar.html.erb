@@ -1,33 +1,26 @@
-<header id="header">
-  <div class="container">
-    <div id="logo" class="pull-left">
-      <%= image_tag 'linkedin_banner_image_1.png' %>
-    <!-- Uncomment below if you prefer to use a text image -->
-    <!-- <h1>Outback</h1> -->
-    </div>
-    <nav id="nav-menu-container">
-      <ul class="nav-menu">
-        <li class="menu-active"><%=link_to 'Home', root_path%></a></li>
+  <nav class = "navbar-container">
+    <div class = navbar-image-container></div>
+    <div class = 'navbar-menu-container'>
+      <%=link_to 'Home', root_path%>
         <% if user_signed_in? %>
-          <li><%= link_to 'My Bookings', show_user_bookings_path %></li>
-          <li> <%= link_to 'My Listings', show_user_listings_path %> </li>
-          <li><a href="#">Testimonials</a></li>       
-          <li class="menu-has-children"><a href="#">Profile</a>
-          <ul>
-            <li><%= link_to 'Edit User', edit_user_registration_path %></li>
-            <li><%= link_to 'Log out', destroy_user_session_path, method: :delete %></li>
-          </ul>
-        </li>
+          <%= link_to 'My Bookings', show_user_bookings_path %>
+          <%= link_to 'My Listings', show_user_listings_path %>
+          <div class="dropdown">
+            <button class="dropbtn">Profile</button>
+            <div class="dropdown-content">
+              <%= link_to 'Edit User', edit_user_registration_path %>
+              <%= link_to 'Log out', destroy_user_session_path, method: :delete %>
+            </div>
         <% else %>
-          <li><%= link_to 'Log In', new_user_session_path %></li>
-          <li><%= link_to 'Sign Up', new_user_registration_path %></li>
+          <%= link_to 'Log In', new_user_session_path %>
+          <%= link_to 'Sign Up', new_user_registration_path %><
         <% end %>
-        <li><a href="#">Contact Us</a></li>
-      </ul>
-    </nav>
-    <!-- #nav-menu-container -->
-  </div>
-  <% flash.each do |key, value| %>
-    <%= value %>
-  <% end %>
-</header>
+        <a href="#">Testimonials</a> 
+        <a href="#">Contact Us</a>
+    </div>
+    <% flash.each do |key, value| %>
+      <%= value %>
+    <% end %>
+  </nav>
+
+
