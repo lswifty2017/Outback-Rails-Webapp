@@ -1,68 +1,97 @@
-<h1>This is the listing show page.</h1>
+<div class = show-container>
+  <div class = show-images-container>
+    <% if @listing.uploaded_images.attached? == true %>
+      <% @listing.uploaded_images.each do |image| %>
+        <%=image_tag image.service_url, class: 'show-images-style'%>
+      <% end %>
+    <button class = 'btn-left', onclick="plusDivs(-1)">&#10094;</button>
+    <button class = 'btn-right', onclick="plusDivs(1)">&#10095;</button>
+    <% else %>
+      <%= image_tag 'https://images.unsplash.com/photo-1503542149301-75886cd3030c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80', :class => "show-images-style" %>
+      <button class = 'btn-left', onclick="plusDivs(-1)">&#10094;</button>
+      <button class = 'btn-right', onclick="plusDivs(1)">&#10095;</button>
+    <% end %>
+  </div>
 
-<h2>Listing</h2>
+  <div class = show-body-container>
+    <div class = show-booking-info-container>
+      <div class = show-booking-info-header>
+        <h1> <%= @listing.title %> </h1>
+        <h3> <%= @listing.location_city %> </h3>
+        <% if can? :edit, @listing %>
+          <%= link_to 'Modify Listing', update_listing_path%>
+        <% end %>
+      </div>
+      <div class = show-booking-info-description><b>Description</b><%= @listing.description %></div>
+      
+      <b>Amenities</b>
+      <div class = show-booking-info-amenities>
+        <% if @listing.bathroom_availability? == true %>
+        <li> Bathroom facilities are available </li>  
+        <% else %>
+          <li> Bathroom facilities are not available </li>
+        <% end %>     
+        <% if @listing.laundry_availability? == true %>
+          <li> Laundry facilities are available </li>
+        <% else %>
+          <li> Laundry facilities are not available </li>
+        <% end %>    
+        <% if @listing.electricity_availability? == true %>
+          <li> Electricity is available </li>
+        <% else %>
+          <li> Electricity is not available </li>
+        <% end %>
+      </div>
 
-<h3> <%= @listing.title %> </h3>
-<h3> <%= @listing.location %> </h3>
-<h3> <%= @listing.description %> </h3>
-
-
-<% if @listing.bathroom_availability? == true %>
- <h3> Bathroom Facilities are available </h3>
-<% else %>
-  <h3> Bathroom Facilities are not available </h3>
-<% end %>
-
-<% if @listing.laundry_availability? == true %>
- <h3> Laundry Facilities are available </h3>
-<% else %>
-  <h3> Laundry Facilities are not available </h3>
-<% end %>
-
-<% if @listing.electricity_availability? == true %>
- <h3> Electricity is available </h3>
-<% else %>
-<h3> Electricity is not available </h3>
-<% end %>
-
-<h3> Price: $ <%= @listing.cost %> per night</h3>
-
-
-<% if @listing.uploaded_images.attached? == true %>
-  <% @listing.uploaded_images.each do |image| %>
-   <%=image_tag image.service_url, class: 'image-size'%>
-  <% end %>
-<% else %>
-  <p>No image for this listing.</p>
-<% end %>
-
-
-<% if can? :edit, @listing %>
-  <%= link_to 'Modify Listing', update_listing_path%>
-<% end %>
-
-<%= month_calendar events: @bookings do |date, bookings| %>
-  <%= date %>
-  <% bookings.each do |booking| %>
-    <div>
-      <%= "Booked" %>
+      <b>Availability</b>
+      <%= month_calendar events: @bookings do |date, bookings| %>
+        <%= date.to_formatted_s(:short) %>
+        <% bookings.each do |booking| %>
+          <div>
+            <%= "Booked" %>
+          </div>
+        <% end %>
+      <% end %>
     </div>
-  <% end %>
-<% end %>
 
+    <div class = show-book-form-container>
+      <div class = show-book-form>
+        <% if current_user != nil%>
+         <div class = show-book-form-price><h5>$<%=@listing.cost %> per night</h5></div> 
+          <%= form_tag(create_booking_path) do %>
+            <%= hidden_field_tag :listing_id, @listing.id %>
+            <p>Checkin</p>
+            <%= date_field_tag :start_time%>
+            <p>Checkout</p>
+            <%= date_field_tag :end_time %>
+            <p>Guests</p>
+            <%= number_field_tag :guests %>
+            <%= submit_tag 'Book' %>
+          <% end %>
+        <% else %>
+          <p> Login to Book - <%= link_to 'Login', new_user_session_path %></p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
 
-<% if current_user != nil%>
-  <h1> Book Now</h1>
-  <form action="<%= create_booking_path %>" method="POST">
-    <input type="hidden" value="<%= form_authenticity_token %>" name="authenticity_token" />
-    <input type="hidden" name="listing_id" value= <%=@listing.id%> />
-    <label>Start Date</label>
-    <input type="date" name='start_time' />
-    <label>End Date</label>
-    <input type="date" name='end_time'/>
-    <input type="submit" value="Book" />
-  </form>
-<% else %>
-  <p> Login to Book - <%= link_to 'Login', new_user_session_path %></p>
-<% end %>
-  
+<script>
+  var slideIndex = 1;
+  showDivs(slideIndex);
+
+  function plusDivs(n) {
+    showDivs(slideIndex += n);
+  }
+
+  function showDivs(n) {
+    var i;
+    var x = document.getElementsByClassName("show-images-style");
+    if (n > x.length) {slideIndex = 1}
+    if (n < 1) {slideIndex = x.length}
+    for (i = 0; i < x.length; i++) {
+      x[i].style.display = "none";  
+    }
+    x[slideIndex-1].style.display = "block";  
+  }
+</script>
