@@ -17,5 +17,11 @@ class Listing < ApplicationRecord
     end
     return @listing_array_filtered = []
   end
+
+  def location_city
+    @location_array = self.location.split(',')
+    @location_city = @location_array[1]
+    return @location_city
+  end
   
 end
