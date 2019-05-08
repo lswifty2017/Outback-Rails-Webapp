@@ -24,7 +24,7 @@
         <div class = listings-image-placeholder> 
           <% if listing.uploaded_images.attached? %>
             <%= link_to listing_path(listing.id) do %>
-              <%= image_tag listing.uploaded_images.first.service_url, :class => "listing-style-image" %>
+              <%= image_tag listing.uploaded_images.first.service_url, :class => "listing-style-image"%>
             <% end %>
           <% else %>
             <%= link_to listing_path(listing.id) do %>
@@ -32,8 +32,11 @@
             <% end %>
           <% end %>
         </div>
-        <h4><%= listing.title %></h4>
-        <h5>Price: $<%= listing.cost %> p/night</h5>
+        <h5><%= listing.title %></h5>
+        <p>$<%= listing.cost %> AUD per night</p>
+        <% if listing.location != nil %>
+          <p><%= listing.location_city %></p>
+        <% end %>
       </div>
     <%end%>
   </div>

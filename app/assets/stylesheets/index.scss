@@ -45,6 +45,10 @@
   width: 22%; 
 }
 
+.index-search-container input[type=submit]{
+  background-color: lightblue; 
+}
+
 .index-search-container form {
   width: 100%;
   height: 30%;
@@ -71,6 +75,29 @@
   height: 100vh;
   background: white;
 }
+
+.listings-container p{
+  margin-bottom: 0;
+  font-size: 14px;
+}
+
+.listings-search-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 100px;
+  width: 100vw;
+  height: 100vh;
+  background: white;
+}
+
+.listings-search-container h3{
+  border-bottom: 1px solid blue;
+  margin-bottom: 20px;
+  padding-bottom: 5px;
+}
+
 
 .listings-container h3 {
   margin-bottom: 20px;
