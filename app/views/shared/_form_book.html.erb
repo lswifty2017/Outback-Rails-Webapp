@@ -1,3 +1,17 @@
-<%= form_for @booking do |f| %>
-  <%= f.submit %>
+<%= form_tag(create_booking_path) do %>
+  <%= hidden_field_tag :listing_id, @listing.id %>
+  <%= text_field_tag :location, nil, placeholder: "Location"%>
+  <%= date_field_tag :start_time%>
+  <%= date_field_tag :end_time %>
+  <%= submit_tag 'Book' %></a>  
 <% end %>
+
+<form action="<%= create_booking_path %>" method="POST">
+  <input type="hidden" value="<%= form_authenticity_token %>" name="authenticity_token" />
+  <input type="hidden" name="listing_id" value= <%=@listing.id%> />
+  <label>Start Date</label>
+  <input type="date" name='start_time' />
+  <label>End Date</label>
+  <input type="date" name='end_time'/>
+  <input type="submit" value="Book" />
+</form>

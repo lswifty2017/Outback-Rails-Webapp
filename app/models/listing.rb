@@ -19,8 +19,12 @@ class Listing < ApplicationRecord
   end
 
   def location_city
-    @location_array = self.location.split(',')
-    @location_city = @location_array[1]
+    if self.location == true
+      @location_array = self.location.split(',')
+      @location_city = @location_array[1]
+    else
+      @location_city = "No Location Given"
+    end
     return @location_city
   end
   
