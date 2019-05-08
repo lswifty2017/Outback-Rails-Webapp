@@ -1,5 +1,6 @@
 <form action="<%= update_listing_path %>" method="POST" enctype="multipart/form-data"  >
 <input type="hidden" name="_method" value="patch" />
+
 <input type="hidden" value="<%= form_authenticity_token %>" name="authenticity_token" />
   <label for="title">Title</label>
   <input type="text" name="title" id="title"/>
@@ -16,25 +17,28 @@
   <p> </p>
 
   <label for="bathroom_availability">Bathroom Availability</label>
-  <input type="checkbox" id="bathroom_availability" name="bathroom_availability"
+  <input type="hidden" name="bathroom_availability" value=false />
+  <input type="checkbox" id="bathroom_availability" name="bathroom_availability  value=true type="checkbox"
          checked>
 
          <p> </p>
 
   <label for="laundry_availability">Laundry Availability</label>
-  <input type="checkbox" id="laundry_availability" name="laundry_availability"
+  <input type="hidden" name="laundry_availability" value=false />
+  <input type="checkbox" id="laundry_availability" name="laundry_availability"  value=true type="checkbox"
     checked>
 
     <p> </p>
 
   <label for="electricity_availability">Electricity Availability</label>
-  <input type="checkbox" id="electricity_availability" name="electricity_availability"
+  <input type="hidden" name="electricity_availability" value=false />
+  <input type="checkbox" id="electricity_availability" name="electricity_availability"  value=true type="checkbox"
     checked>
 
     <p> </p>
-
   <label for="kitchen_availability">Kitchen Availability</label>
-  <input type="checkbox" id="kitchen_availability" name="kitchen_availability"
+  <input type="hidden" name="kitchen_availability" value=false />
+  <input type="checkbox" id="kitchen_availability" name="kitchen_availability"   value=true type="checkbox"
     checked>
   
  <p> </p>
