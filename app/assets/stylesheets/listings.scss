@@ -2,6 +2,24 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.image-size{
-  height: 300px;
+
+.my-listings-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 20vh;
+  width: 100vw;
+  height: 100vh;
+  background: white;
+}
+
+.my-listings-container p{
+  margin-bottom: 0;
+  font-size: 14px;
+}
+.my-listings-container h3 {
+  margin-bottom: 20px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid blue;
 }
