@@ -6,12 +6,14 @@ class BookingsController < ApplicationController
     @start_time = booking_params[:start_time]
     @end_time = booking_params[:end_time]
     @listing_id = booking_params[:listing_id]
+    @guests = booking_params[:guests]
 
     @booking = Booking.new({
       user_id: current_user.id,
       listing_id: @listing_id,
       start_time: @start_time,
-      end_time: @end_time
+      end_time: @end_time,
+      guests: @guests
     })
 
     @listing = Listing.find(@listing_id)
@@ -34,6 +36,7 @@ class BookingsController < ApplicationController
     @day_cost = @booking.listing.cost
     @total_days = @booking.amount_of_days
     @total_cost = @day_cost * @total_days
+    @guests = @booking.guests
     render "booking_payment"
   end
 
@@ -56,6 +59,6 @@ class BookingsController < ApplicationController
   private
 
   def booking_params
-    params.permit(:listing_id, :start_time, :end_time)
+    params.permit(:listing_id, :start_time, :end_time, :guests)
   end
 end
