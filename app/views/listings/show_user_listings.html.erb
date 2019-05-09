@@ -24,7 +24,10 @@
         <%= link_to 'Delete', destroy_listing_path(listing.id), data: { confirm: 'Are you sure?' }%>
       </div>
     <%end%>
+  <% else %>
+    <h1>You currently have no listings.</h1>
   <%end%>
+
   </div>
 </div>
 
