@@ -65,6 +65,9 @@ class ListingsController < ApplicationController
     end
   end
 
+  def create_listing
+  end
+
   def show
     @listing = Listing.find(params[:id])
     @bookings = @listing.bookings
