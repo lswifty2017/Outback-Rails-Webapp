@@ -1,51 +1,74 @@
-<form action="<%= update_listing_path %>" method="POST" enctype="multipart/form-data"  >
-<input type="hidden" name="_method" value="patch" />
+<p> </p>
+<p> </p>
+<p> </p>
+<p> </p>
+<p> </p>
+<p> </p>
+<h4> Edit a Listing </h4>
+<div class = listing_new_form-container>
 
-<input type="hidden" value="<%= form_authenticity_token %>" name="authenticity_token" />
-  <label for="title">Title</label>
-  <input type="text" name="title" id="title"/>
+  <form action="<%= update_listing_path %>" method="POST" enctype="multipart/form-data"  >
+  <input type="hidden" name="_method" value="patch" />
+  <div class = listing_new_form_input-container>
+  <div class = listing_new_form_textbox-container>
+    <label for="title">Title</label>
+    <input type="text" name="title" id="title" required/>
+    
+    <p> </p>
 
-  <label for="address">Address</label>
-  <input type="text" name="address" name="address" id="location"/>
-
-  <label>Description</label>
-  <input type="textarea" name="description" id="description" />
-
-  <label for="cost">Cost</label>
-  <input type="integer" name="cost" id="cost" />
-
-  <p> </p>
-
-  <label for="bathroom_availability">Bathroom Availability</label>
-  <input type="hidden" name="bathroom_availability" value=false />
-  <input type="checkbox" id="bathroom_availability" name="bathroom_availability  value=true type="checkbox"
-         checked>
-
-         <p> </p>
-
-  <label for="laundry_availability">Laundry Availability</label>
-  <input type="hidden" name="laundry_availability" value=false />
-  <input type="checkbox" id="laundry_availability" name="laundry_availability"  value=true type="checkbox"
-    checked>
+    <label for="address"> Address</label>
+    
+    <input type="text" name="address" name="address" id="location" required/>
 
     <p> </p>
 
-  <label for="electricity_availability">Electricity Availability</label>
-  <input type="hidden" name="electricity_availability" value=false />
-  <input type="checkbox" id="electricity_availability" name="electricity_availability"  value=true type="checkbox"
-    checked>
+    <label for="cost">Cost</label> 
+    <input type="integer" name="cost" id="cost" required />
 
     <p> </p>
-  <label for="kitchen_availability">Kitchen Availability</label>
-  <input type="hidden" name="kitchen_availability" value=false />
-  <input type="checkbox" id="kitchen_availability" name="kitchen_availability"   value=true type="checkbox"
-    checked>
-  
- <p> </p>
 
-  <label for = "uploaded_images"> Upload Images </label>
-  <input type = "file" name = "uploaded_images[]" id = "uploaded_images" multiple/>
+    <label>Description</label>
+    <textarea type="text" name="description" id="description" required > </textarea>
 
+    
+    <p> </p>
+  </div>
 
-  <input type="submit" value="Edit" />
-</form> 
+  <div class = listing_new_form_checkbox-container>
+    <label for="bathroom_availability">Bathroom Availability</label>
+    <input type="checkbox" id="bathroom_availability" name="bathroom_availability">
+
+          <p> </p>
+
+    <label for="laundry_availability">Laundry Availability</label>
+    <input type="checkbox" id="laundry_availability" name="laundry_availability"
+      checked>
+
+      <p> </p>
+
+    <label for="electricity_availability">Electricity Availability</label>
+    <input type="checkbox" id="electricity_availability" name="electricity_availability"
+      checked>
+
+      <p> </p>
+
+    <label for="kitchen_availability">Kitchen Availability</label>
+    <input type="checkbox" id="kitchen_availability" name="kitchen_availability"
+      checked>
+    </div>
+</div>
+
+<p> </p>
+<div class = listing_new_form_images-container>
+<label for = "uploaded_images"> Upload Images </label>
+<input type = "file" name = "uploaded_images[]" id = "uploaded_images" multiple required accept="image/*"/>
+
+</div>
+
+<p> </p>
+<div class = listing_new_form_submit-container>
+      <input type="submit" value="Edit" />
+    </form> 
+    </div>
+
+</div>
