@@ -8,7 +8,7 @@
 
 }
 
-form {
+.listing_new_form-container form {
   width: 50%;
   height: 50%;
   border-top-style: dotted;
@@ -48,7 +48,7 @@ form {
   align-items: center;
   justify-content: center;
 }
-label {
+.listing_new_form-container label {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -57,29 +57,29 @@ label {
 }
 
 
-input#title{
+.listing_new_form-container input#title{
   width: 15vw;
   border-style: solid;
   border-color: rgba(34, 38, 60, 0.8);
 }
-input#location{
+.listing_new_form-container input#location{
   width: 15vw;
   border-style: solid;
   border-color: rgba(34, 38, 60, 0.8);
 }
-textarea#description {
+.listing_new_form-container textarea#description {
   width: 15vw;
   border: 2px solid;
   border-color: rgba(34, 38, 60, 0.8);
   border-radius: 4px;
   box-sizing:border-box;
 }
-input#cost{
+.listing_new_form-container input#cost{
   width: 15vw;
   border-style: solid;
   border-color: rgba(34, 38, 60, 0.8);
 }
-input#uploaded_images{
+.listing_new_form-container input#uploaded_images{
   width: 15vw;
   border-style: solid;
   border-color: rgba(34, 38, 60, 0.8);
