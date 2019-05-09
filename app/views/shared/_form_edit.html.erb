@@ -8,6 +8,7 @@
 <div class = listing_new_form-container>
 
   <form action="<%= update_listing_path %>" method="POST" enctype="multipart/form-data"  >
+  <input type="hidden" value="<%= form_authenticity_token %>" name="authenticity_token" />
   <input type="hidden" name="_method" value="patch" />
   <div class = listing_new_form_input-container>
   <div class = listing_new_form_textbox-container>
