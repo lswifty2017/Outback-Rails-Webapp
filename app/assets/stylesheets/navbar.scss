@@ -36,6 +36,10 @@
   color: white;
 }
 
+.navbar-menu-container a:hover{
+  color:#03c5ec;
+}
+
 
 .dropbtn {
   padding: 15px;
@@ -59,10 +63,11 @@
 .dropdown-content {
   display: none;
   position: absolute;
-  min-width: 160px;
+  min-width: 100px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
+  z-index: 0;
   background-color: rgb(33, 40, 61);
+  transition: 0.5s;
 }
 
 /* Links inside the dropdown */
@@ -78,8 +83,8 @@
 .dropdown-content a:hover {background-color: rgb(33, 40, 61); color: #03c5ec;}
 
 /* Show the dropdown menu on hover */
-.dropdown:hover .dropdown-content {display: block;}
+.dropdown:hover .dropdown-content {display: block; transition: 0.5s;}
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
-.dropdown:hover .dropbtn {background-color: rgb(33, 40, 61);color: #03c5ec;}
+.dropdown:hover .dropbtn {background-color: rgb(33, 40, 61);color: #03c5ec; transition: 0.5s;}
 
