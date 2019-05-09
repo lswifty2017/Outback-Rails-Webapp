@@ -11,11 +11,7 @@ class ListingsController < ApplicationController
     @start_time = search_params[:start_time].to_date
     @end_time = search_params[:end_time].to_date
 
-    @filtered_listings_cost = @listings.map do |listing|
-      if listing.cost.to_i < @cost
-        listing
-      end
-    end
+
 
     #all get all boookings from listing
     @bookings_unavailable = []
@@ -47,6 +43,15 @@ class ListingsController < ApplicationController
         end
       end
     end
+
+    @filtered_listings = @bookings_available.map do |booking|
+      if booking.cost.to_i < @cost
+        booking
+      end
+    end
+
+
+
     # redirect_to listings_search_results_path
   end
   

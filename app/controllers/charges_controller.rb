@@ -10,7 +10,7 @@ class ChargesController < ApplicationController
       email: params[:stripeEmail],
       source: params[:stripeToken],
     })
-  
+  begin
     charge = Stripe::Charge.create({
       customer: customer.id,
       amount: @amount,
@@ -20,6 +20,7 @@ class ChargesController < ApplicationController
   
   rescue Stripe::CardError => e
     flash[:error] = e.message
+  end
     redirect_to new_charge_path
   end
 end

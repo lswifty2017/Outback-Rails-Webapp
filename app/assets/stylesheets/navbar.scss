@@ -8,6 +8,7 @@
   top: 0;
   position:fixed;
   background-color: rgb(33, 40, 61);
+  z-index: 1;
 }
 
 .navbar-image-container{
@@ -32,7 +33,9 @@
   font-size: 14px;
   font-weight: 300;
   padding: 10px 15px;
+  color: white;
 }
+
 
 .dropbtn {
   padding: 15px;

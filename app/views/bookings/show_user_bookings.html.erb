@@ -1,14 +1,31 @@
-<h1>Your Bookings</h1>
-
-<% if @user.bookings.count != 0 %>
-  <% @booking.each do |booking| %>
-    <% if booking.user_id == current_user.id  %>
-      <p><%= booking.listing.title  %> </p> 
-      <%= link_to 'delete', destroy_booking_path(booking.id), data: { confirm: 'Are you sure?' }%>
-      
-    <% end %>
-  <% end %>
-<% elsif %>
-  nothing to see here
-<% end %>
-
+<div class = my-listings-container>
+  <h3>My Bookings</h3>
+  <div class = listings-placeholder-container>
+  <% if @user.bookings.count != 0 %>
+    <% @user.bookings.each do |booking| %>
+      <div class = listings-placeholder>
+        <div class = listings-image-placeholder> 
+          <% if booking.listing.uploaded_images.attached? %>
+            <%= link_to listing_path(booking.listing.id) do %>
+              <%= image_tag booking.listing.uploaded_images.first.service_url, :class => "listing-style-image"%>
+            <% end %>
+          <% else %>
+            <%= link_to listing_path(booking.listing.id) do %>
+              <%= image_tag 'https://images.unsplash.com/photo-1503542149301-75886cd3030c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80', :class => "listing-style-image" %>
+            <% end %>
+          <% end %>
+        </div>
+        <h5><%= booking.listing.title %></h5>
+        <p>$<%= booking.listing.cost %> AUD per night</p>
+        <% if booking.listing.location != nil %>
+          <p><%= booking.listing.location_city %></p>
+        <% end %>
+          <p>From <%= booking.start_time.strftime("%d/%m/%Y") %> to <%=booking.end_time.strftime("%d/%m/%Y")%> </p>
+        <%= button_to 'Cancel Booking', destroy_booking_path(booking.id), data: { confirm: 'Are you sure?' }, method:'delete'%>
+      </div>
+    <%end%>
+  <% else %>
+    <h1>You currently have no bookings.</h1>
+  <%end%>
+  </div>
+</div>

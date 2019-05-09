@@ -1,24 +1,36 @@
-<h1>Your Listings</h1>
-<ul>
-<% if @user_listings != nil %>
-  <% @user_listings.each do |listing| %>
-  <li>
-    <%= listing.title %>
-    <%= link_to 'Modify', update_listing_path(listing.id)%>
-    <%= link_to 'delete', destroy_listing_path(listing.id), data: { confirm: 'Are you sure?' }%>
-    <p> Booking Status: 
-    <% if listing.booked_status != true %>
-      <%= "Available" %>
-    <% else %>
-      <%= "Not Available" %>
-    <% end %>
-    </p>
-  </li>
-  <% end %>
-<% else %>
-  <p> No user listings right now!</p>
-<% end %>
-</ul>
+<div class = my-listings-container>
+  <h3>My Listings</h3>
+  <div class = listings-placeholder-container>
+  <% if @user_listings != nil %>
+    <% @user_listings.each do |listing| %>
+      <div class = listings-placeholder>
+        <div class = listings-image-placeholder> 
+          <% if listing.uploaded_images.attached? %>
+            <%= link_to listing_path(listing.id) do %>
+              <%= image_tag listing.uploaded_images.first.service_url, :class => "listing-style-image"%>
+            <% end %>
+          <% else %>
+            <%= link_to listing_path(listing.id) do %>
+              <%= image_tag 'https://images.unsplash.com/photo-1503542149301-75886cd3030c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80', :class => "listing-style-image" %>
+            <% end %>
+          <% end %>
+        </div>
+        <h5><%= listing.title %></h5>
+        <p>$<%= listing.cost %> AUD per night</p>
+        <% if listing.location != nil %>
+          <p><%= listing.location_city %></p>
+        <% end %>
+        <%= link_to 'Edit', update_listing_path(listing.id)%>
+        <%= link_to 'Delete', destroy_listing_path(listing.id), data: { confirm: 'Are you sure?' }%>
+      </div>
+    <%end%>
+  <% else %>
+    <h1>You currently have no listings.</h1>
+  <%end%>
+
+  </div>
+</div>
+
 
 <% if @user = current_user %>
   <h2>Create Listing</h2>

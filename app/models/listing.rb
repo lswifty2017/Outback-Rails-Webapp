@@ -17,5 +17,15 @@ class Listing < ApplicationRecord
     end
     return @listing_array_filtered = []
   end
+
+  def location_city
+    if self.location == true
+      @location_array = self.location.split(',')
+      @location_city = @location_array[1]
+    else
+      @location_city = "No Location Given"
+    end
+    return @location_city
+  end
   
 end

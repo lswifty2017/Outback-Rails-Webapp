@@ -1,6 +1,58 @@
-<h1>Payment method</h1>
-<p>Cost Per Day: <%= @day_cost %></p>
-<p> Days Booked: <%= @total_days %></p>
-<%= render '/shared/stripe_form' %>
 
+<div class = booking-payment-container>
+ <div class = booking-header-container><h1>Booking Confirmation </h1></div> 
+ <div class = booking-section-container>
+  <div class = booking-info-container>
+    <h4>Check In</h4>
+    <p><%=@booking.start_time.strftime("%A %eth %B %Y") %></p>
+    <p><%= Time.now.strftime("%I:%M%p")  %></p>
+  </div>
+  <div class = booking-info-container>
+    <h4>Check Out</h4>
+    <p><%=@booking.end_time.strftime("%A %eth %B %Y") %></p>
+    <p><%= Time.now.strftime("%I:%M%p") %></p>
+  </div>
+  <div class = booking-info-container>
+    <h4><%= @total_days %></h4>
+    <% if @total_days == 1 %>
+      <p>Night</p>
+    <% else %>
+      <p>Nights</p>
+    <% end %> 
+  </div>
+  <div class = booking-info-container>
+    <h4><%= @guests %></h4>
+    <% if @guests == 1 %>
+      <p>Guest</p>
+    <% else %>
+      <p>Guests</p>
+    <% end %> 
+  </div>
+ </div>
+ <div class = booking-cancel-container>
+   <%= button_to 'Cancel Booking?', destroy_booking_path(@booking.id), data: { confirm: 'Are you sure?' }, method:'delete'%>
+ </div>
+  <div class = booking-body-container>
+    <div class = booking-body-text-container>
+      <b>Payment</b>
+      <p>On the day after the guest checks in, the payout will be credited. For details, see you transaction history.</p>
+    </div>
+    <div class =  booking-body-text-container>
+      <b>Cancellation Policy</b>
+      <p>Strict: 50% refund until 1 week prior to arrival, except fees.</p>
+    </div>
+    <div class =  booking-body-text-container>
+      <b>Customer Support</b>
+      <p>If you need assistance with your booking or for urgent situations, such as check-in trouble or arriving to something unexpected, we're here to help. </p>
+    </div>
+    <div class =  booking-body-text-container>
+      <b>Payout</b>
+      <div class = booking-body-payout-container>
+        <p>$ <%=@day_cost %> x <%=@total_days%> night(s) </p>
+        <p>$  <%= @total_cost %></p>
+      </div>
+    </div>
+    <%= render '/shared/stripe_form' %>
+  </div>
+</div>
 
