@@ -59,13 +59,13 @@
         <% if current_user != nil%>
          <div class = show-book-form-price><h5>$<%=@listing.cost %> per night</h5></div> 
           <%= form_tag(create_booking_path) do %>
-            <%= hidden_field_tag :listing_id, @listing.id %>
+            <%= hidden_field_tag :listing_id, @listing.id%>
             <p>Checkin</p>
-            <%= date_field_tag :start_time%>
+            <%= date_field_tag :start_time, nil, :required => true %>
             <p>Checkout</p>
-            <%= date_field_tag :end_time %>
+            <%= date_field_tag :end_time, nil, :required => true %>
             <p>Guests</p>
-            <%= number_field_tag :guests %>
+            <%= number_field_tag :guests, nil, :required => true %>
             <%= submit_tag 'Book' %>
           <% end %>
         <% else %>

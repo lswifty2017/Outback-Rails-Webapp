@@ -7,10 +7,10 @@
   <div class = index-search-container>
     <h3>Find your camping ground.</h3>
     <%= form_tag(listings_search_path) do %>
-      <%= text_field_tag :location, nil, placeholder: "Location"%>
-      <%= date_field_tag :start_time%>
-      <%= date_field_tag :end_time %>
-      <%= number_field_tag :cost, nil, placeholder: "Max Price" %>
+      <%= text_field_tag :location, nil, placeholder: "Location", :required => true%>
+      <%= date_field_tag :start_time, nil, :required => true%>
+      <%= date_field_tag :end_time, nil, :required => true %>
+      <%= number_field_tag :cost, nil, placeholder: "Max Price", :required => true %>
       <%= submit_tag 'Search' %></a>  
     <% end %>
   </div>
