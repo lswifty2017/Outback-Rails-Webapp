@@ -42,7 +42,6 @@ class BookingsController < ApplicationController
 
   def destroy
    @booking  = Booking.find(params[:id])
-   @booking.listing.update_attribute(:booked_status, false)
    @user = current_user
    @host_user_id = @booking.listing.user_id
    @host = User.find(@host_user_id)
