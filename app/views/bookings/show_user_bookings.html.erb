@@ -21,7 +21,7 @@
           <p><%= booking.listing.location_city %></p>
         <% end %>
           <p>From <%= booking.start_time.strftime("%d/%m/%Y") %> to <%=booking.end_time.strftime("%d/%m/%Y")%> </p>
-        <%= button_to 'Cancel Booking', destroy_booking_path(booking.id), data: { confirm: 'Are you sure?' }%>
+        <%= button_to 'Cancel Booking', destroy_booking_path(booking.id), data: { confirm: 'Are you sure?' }, method:'delete'%>
       </div>
     <%end%>
   <% else %>
