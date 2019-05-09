@@ -49,10 +49,6 @@ class ListingsController < ApplicationController
         booking
       end
     end
-
-
-
-    # redirect_to listings_search_results_path
   end
   
   def create
