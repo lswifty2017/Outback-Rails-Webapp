@@ -129,6 +129,17 @@
   border-bottom: grey 0.5px solid;
 }
 
+.show-book-form-message{
+  width: 80%;
+  height: 50%;
+  border: grey solid 1px;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+
 .simple-calendar{
   font-family: "Open Sans", sans-serif;
 }
