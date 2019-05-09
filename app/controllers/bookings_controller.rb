@@ -26,6 +26,33 @@ class BookingsController < ApplicationController
     end
   end
 
+  def create_check 
+    @start_time = booking_params[:start_time].to_date
+    @end_time = booking_params[:end_time].to_date
+    @listing_id = booking_params[:listing_id]
+    @listing = Listing.find(@listing_id)
+
+    if @listing.bookings.empty? == true
+      @available = true
+    else
+      @listing.bookings.each do |booking|
+      @bookings_array = (booking.start_time.to_date..booking.end_time.to_date).to_a
+        if @bookings_array.find {|date|date === @start_time || date === @end_time} !=nil
+          @available = false
+          break
+        end
+      end
+      
+    end
+    
+    if @available == false
+      flash[:notice]= "The dates requested are currently unavailable."
+      redirect_back(fallback_location: root_path)
+    else
+      redirect_to create_booking_path(booking_params)
+    end
+  end
+
   def show_user_bookings
     @booking = Booking.all
     @user = current_user
