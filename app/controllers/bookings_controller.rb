@@ -77,7 +77,7 @@ class BookingsController < ApplicationController
    @host_user_id = @booking.listing.user_id
    @host = User.find(@host_user_id)
     BookingMailer.with(host: @host, user: @user, booking: @booking).cancelled_booking_email.deliver_now
-    flash[:notice]= "Booking successfully deleted and Host notified"
+    flash[:notice]= "Booking successfully deleted and host notified."
     @booking.listing.save
     @booking.destroy
     redirect_to listings_path
