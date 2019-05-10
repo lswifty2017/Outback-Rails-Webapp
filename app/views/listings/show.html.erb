@@ -62,7 +62,6 @@
             <%= link_to 'Modify Listing', update_listing_path%>
             <%= link_to 'Delete Listing', destroy_listing_path%>
           </div>
-      <% end %>
         <% else %>
           <div class = show-book-form>
             <% if current_user != nil%>
@@ -77,11 +76,12 @@
                 <%= number_field_tag :guests, nil, :required => true %>
                 <%= submit_tag 'Book' %>
               <% end %>
-            <% else %>
-              <p> Login to Book - <%= link_to 'Login', new_user_session_path %></p>
             <% end %>
           </div>
         <%end%>
+      <%else %>
+        <p> Login to Book - <%= link_to 'Login', new_user_session_path %></p>
+      <%end%>
     </div>
   </div>
 </div>
