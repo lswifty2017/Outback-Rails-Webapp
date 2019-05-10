@@ -57,8 +57,10 @@ class ListingsController < ApplicationController
     @listing.user_id = current_user.id
     if @listing.save
       redirect_to @listing
+      flash[:notice] = "Listing successfully created."
     else
       redirect_to :root
+      flash[:notice] = "An error has occured."
     end
   end
 
