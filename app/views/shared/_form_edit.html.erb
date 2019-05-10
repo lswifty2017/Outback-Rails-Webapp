@@ -63,6 +63,9 @@
 <div class = listing_new_form_images-container>
 <label for = "uploaded_images"> Upload Images </label>
 <input type = "file" name = "uploaded_images[]" id = "uploaded_images" multiple required accept="image/*"/>
+<% if @listing.uploaded_images.attached? == true %>
+  <%= link_to 'Remove Current Images', destroy_image_path, data: { confirm: 'Are you sure?' } %>
+<% end %>
 
 </div>
 

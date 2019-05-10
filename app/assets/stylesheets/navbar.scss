@@ -14,11 +14,17 @@
 .navbar-image-container{
   height: 100%;
   width: 350px; 
-  background: url('linkedin_banner_image_1.png');
+  background: image-url('linkedin_banner_image_1.png');
   background-size: contain;
   background-repeat: no-repeat;
   display:flex;
   justify-self: flex-start;
+}
+
+.navbar-image-container:hover{
+  opacity: 0.4;
+  cursor: pointer;
+  transition: 1s;
 }
 
 .navbar-menu-container{
