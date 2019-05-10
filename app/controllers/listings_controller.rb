@@ -1,6 +1,7 @@
 require 'date'
 
 class ListingsController < ApplicationController
+  load_and_authorize_resource
   def index
     @listings = Listing.all
   end
