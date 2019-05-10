@@ -38,3 +38,13 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
   justify-content: center;
 }
+
+.alert{
+  position: fixed;
+  top: 14vh;
+  width: 100vw;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  background: lightblue;
+}
