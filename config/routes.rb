@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get'/results', to: "listings#search", as: "listings_search_results"
   get "/listings/:id", to: "listings#show", as: "listing"
   get 'create_listing', to: "listings#create_listing", as: "create_listing_page"
+
   post "/create_listing", to: "listings#create", as: "create_listing"
   get '/listings/:id/edit', to: 'listings#edit', as: 'edit_listing'
   patch '/listings/:id/edit', to: 'listings#update', as: 'update_listing'

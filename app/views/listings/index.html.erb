@@ -7,15 +7,17 @@
   <div class = index-search-container>
     <h3>Find your camping ground.</h3>
     <%= form_tag(listings_search_path) do %>
-      <%= text_field_tag :location, nil, placeholder: "Location", :required => true%>
+      <%= text_field_tag :location, nil, placeholder: "Location (e.g Melbourne)", :required => true%>
+      <%= number_field_tag :radius, nil, placeholder: "Distance(mi)", :required => true%>
       <%= date_field_tag :start_time, nil, :required => true%>
       <%= date_field_tag :end_time, nil, :required => true %>
       <%= number_field_tag :cost, nil, placeholder: "Max Price", :required => true %>
       <%= submit_tag 'Search' %></a>  
     <% end %>
   </div>
- 
 </div> 
+
+
 <div class = listings-container>
   <h3>Backyard Campsites</h3>
   <div class = listings-placeholder-container>
@@ -35,9 +37,11 @@
         <h5><%= listing.title %></h5>
         <p>$<%= listing.cost %> AUD per night</p>
         <% if listing.location != nil %>
-          <p><%= listing.location_city %></p>
+          <p><%= listing.location %></p>
         <% end %>
       </div>
     <%end%>
   </div>
 </div>
+
+
