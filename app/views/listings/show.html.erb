@@ -17,7 +17,11 @@
     <div class = show-booking-info-container>
       <div class = show-booking-info-header>
         <h1> <%= @listing.title %> </h1>
-        <h3> <%= @listing.location_city %> </h3>
+        <h3> <%= @listing.location %> </h3>
+        <% if @listing.longitude != nil %>
+          <%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@listing.latitude},#{@listing.longitude}&markers=#{@listing.latitude},#{@listing.longitude}&zoom=10&size=640x400&key=AIzaSyAbwvRHfurzw-GOdhu3Fg1ohq5t8GyS1P0",
+            class: 'img-fluid img-rounded', alt: "#{@listing.title} on the map"%>
+        <% end %>
         <% if can? :edit, @listing %>
           <%= link_to 'Modify Listing', update_listing_path%>
         <% end %>

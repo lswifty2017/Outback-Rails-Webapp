@@ -1,6 +1,6 @@
-
 <div class = listings-search-container>
-  <h3>Search Results</h3>
+  <h3>Search Results - <%= @result_count %> Campsites Found</h3>
+  <%= image_tag @google_url %>
   <div class = listings-placeholder-container>
     
       <% @filtered_listings.each do |listing| %>
@@ -20,7 +20,7 @@
             <h5><%= listing.title %></h5>
             <p>$<%= listing.cost %> AUD per night</p>
             <% if listing.location != nil %>
-              <p><%= listing.location_city %></p>
+              <p><%= listing.location %></p>
             <% end %>
           </div>
         <% end %>

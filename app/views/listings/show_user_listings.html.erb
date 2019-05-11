@@ -18,7 +18,7 @@
         <h5><%= listing.title %></h5>
         <p>$<%= listing.cost %> AUD per night</p>
         <% if listing.location != nil %>
-          <p><%= listing.location_city %></p>
+          <p><%= listing.location %></p>
         <% end %>
         <%= link_to 'Edit', update_listing_path(listing.id)%>
         <%= link_to 'Delete', destroy_listing_path(listing.id), data: { confirm: 'Are you sure?' }%>
