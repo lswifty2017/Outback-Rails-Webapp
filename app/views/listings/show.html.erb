@@ -67,9 +67,16 @@
             <%= link_to 'Delete Listing', destroy_listing_path%>
           </div>
         <% else %>
+          <div class = show-owner-info>
+            <h3>Hosted By</h3>
+            <% if @listing_user.avatar.attached? == true  %>
+              <div class = 'show-owner-avatar'><%= image_tag @listing_user.avatar %></div>
+            <% end %>
+            <div class = show-owner-name> <h4><%= @listing_user.first_name  %></h4></div>
+          </div>
           <div class = show-book-form>
             <% if current_user != nil%>
-            <div class = show-book-form-price><h5>$<%=@listing.cost %> per night</h5></div> 
+              <div class = show-book-form-price><h5>$<%=@listing.cost %> per night</h5></div> 
               <%= form_tag(booking_check_path) do %>
                 <%= hidden_field_tag :listing_id, @listing.id%>
                 <p>Checkin</p>
