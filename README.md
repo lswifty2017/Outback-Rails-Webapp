@@ -144,6 +144,10 @@ Dependent destroy means if the listing is deleted, as is their bookings, and att
 ----------------------------------------------------------------------------------------------------------------------------
 15.	Provide your database schema design.
 
+Find this to the right in the Trello link below-  
+
+https://www.figma.com/file/eRiHYELAs62OfbBOPPL7AGGp/Rails-Project-Design?node-id=0%3A1
+
 ----------------------------------------------------------------------------------------------------------------------------
 16.	 Provide User stories for your App.
 
@@ -156,8 +160,8 @@ Harridaughter is ecstatic to have discovered such an intimate experience, with c
 ----------------------------------------------------------------------------------------------------------------------------
 17.	Provide Wireframes for your App.
 
-Figma design exports as follows:
-
+Figma designs and paper wireframes exports as follows:
+https://www.figma.com/file/eRiHYELAs62OfbBOPPL7AGGp/Rails-Project-Design?node-id=0%3A1
 
 
 ----------------------------------------------------------------------------------------------------------------------------
