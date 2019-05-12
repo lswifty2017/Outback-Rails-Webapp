@@ -1,8 +1,14 @@
   <nav class = "navbar-container">
     <div class = 'navbar-image-container' onclick = "location.href='/';"></div>
     <div class = 'navbar-menu-container'>
-      <%=link_to 'Home', root_path%>
         <% if user_signed_in? %>
+         <div class = 'navbar-avatar-container' onclick = "location.href='/';"> Welcome <%=current_user.first_name  %></div> 
+          <% if current_user.avatar.attached? == true %>
+            <div class = "navbar-avatar-container"><%= image_tag current_user.avatar%></div> 
+          <% else %>
+            <div class = 'navbar-avatar-container'> <%= image_tag 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png'%></div>
+          <% end %>
+          <%= link_to 'Home', listings_path %>
           <%= link_to 'My Bookings', show_user_bookings_path %>
           <div class = 'dropdown'>
             <button class = "dropbtn"><%= link_to 'My Listings', show_user_listings_path %></button>
@@ -11,6 +17,7 @@
               <%= link_to 'New Listing', create_listing_page_path %>
             </div>
           </div>
+
           
           <div class="dropdown">
             <button class="dropbtn">Profile</button>
@@ -20,6 +27,7 @@
             </div>
           </div>
         <% else %>
+          <%= link_to 'Home', listings_path %>
           <%= link_to 'Log In', new_user_session_path %>
           <%= link_to 'Sign Up', new_user_registration_path %>
         <% end %>
@@ -27,7 +35,7 @@
     </div>
     
     <% flash.each do |key, value| %>
-      <div class = alert>  <%= value %> </div>
+      <div class = alert data-dismiss="alert">  <%= value %> </div>
     <% end %>
    
   </nav>
