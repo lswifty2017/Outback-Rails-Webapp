@@ -20,7 +20,8 @@ class BookingsController < ApplicationController
     @listing = Listing.find(@listing_id)
     if @booking.save!
       @user = current_user
-      BookingMailer.with(user: @user).new_booking_email.deliver_now
+      # taken out for presentation purposes
+      # BookingMailer.with(user: @user).new_booking_email.deliver_now
       redirect_to :booking_payment
     else
       redirect_to :root
@@ -76,7 +77,8 @@ class BookingsController < ApplicationController
    @user = current_user
    @host_user_id = @booking.listing.user_id
    @host = User.find(@host_user_id)
-    BookingMailer.with(host: @host, user: @user, booking: @booking).cancelled_booking_email.deliver_now
+    # taken out for presentation purposes
+    # BookingMailer.with(host: @host, user: @user, booking: @booking).cancelled_booking_email.deliver_now
     flash[:notice]= "Booking successfully deleted and host notified."
     @booking.listing.save
     @booking.destroy
