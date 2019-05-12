@@ -1,3 +1,5 @@
+require 'stripe'
+
 class ChargesController < ApplicationController
   load_and_authorize_resource
   def new
