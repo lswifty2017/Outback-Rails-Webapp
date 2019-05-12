@@ -18,7 +18,7 @@
         <h5><%= booking.listing.title %></h5>
         <p>$<%= booking.listing.cost %> AUD per night</p>
         <% if booking.listing.location != nil %>
-          <p><%= booking.listing.location_city %></p>
+          <p><%= booking.listing.location %></p>
         <% end %>
           <p>From <%= booking.start_time.strftime("%d/%m/%Y") %> to <%=booking.end_time.strftime("%d/%m/%Y")%> </p>
         <%= button_to 'Cancel Booking', destroy_booking_path(booking.id), data: { confirm: 'Are you sure?' }, method:'delete'%>

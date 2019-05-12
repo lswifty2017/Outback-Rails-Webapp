@@ -100,6 +100,8 @@ class ListingsController < ApplicationController
 
   def show
     @listing = Listing.find(params[:id])
+    @user_id = @listing.user_id
+    @listing_user = User.find(@user_id)
     @bookings = @listing.bookings
     @user = current_user
   end
