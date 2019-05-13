@@ -56,9 +56,11 @@ class ListingsController < ApplicationController
     end
 
     @filtered_listings = @bookings_available.map do |booking|
-      if booking.distance_from(@location) < @radius
-        if booking.cost.to_i < @cost
-          booking
+      if booking.longitude != nil
+        if booking.distance_from(@location) < @radius
+          if booking.cost.to_i < @cost
+            booking
+          end
         end
       end
     end
