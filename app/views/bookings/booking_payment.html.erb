@@ -52,7 +52,7 @@
         <p>$  <%= @total_cost %></p>
       </div>
     </div>
-    <%= render '/shared/stripe_form' %>
+    <%= render '/shared/stripe_form', amount: @total_cost %>
   </div>
 </div>
 

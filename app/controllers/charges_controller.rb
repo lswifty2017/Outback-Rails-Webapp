@@ -1,12 +1,11 @@
 class ChargesController < ApplicationController
-  load_and_authorize_resource
+  
   def new
   end
   
   def create
     # Amount in cents
   begin
-    @amount = 500
   
     customer = Stripe::Customer.create({
       email: params[:stripeEmail],
@@ -14,14 +13,15 @@ class ChargesController < ApplicationController
     })
     charge = Stripe::Charge.create({
       customer: customer.id,
-      amount: @amount,
+      amount: 2700,
       description: 'Rails Stripe customer',
       currency: 'aud',
     })
-  
+
   rescue Stripe::CardError => e
     flash[:error] = e.message
   end
-    redirect_to new_charge_path
+  redirect_to new_charge_path
   end
+  
 end
