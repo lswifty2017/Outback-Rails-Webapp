@@ -70,7 +70,7 @@ gem "simple_calendar", "~> 2.0"
 gem 'bootstrap'
 gem 'jquery-rails'
 gem 'jquery-turbolinks'
-gem 'bootstrap-sass', '~> 3.2.0'
+gem 'bootstrap-sass', '~> 3.4.1'
 gem 'autoprefixer-rails'
 gem 'geocoder'
 gem 'activerecord-postgis-adapter'
